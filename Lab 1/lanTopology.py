@@ -38,9 +38,15 @@ def firstNetwork():
     net.addLink( PC4, s24)
     net.addLink( PC4, s34)
 
-    
+    PC4.cmd('ip addr add 10.10.20.4/24 dev PC4-eth1')
+    PC4.cmd('ip addr add 10.10.30.4/24 dev PC4-eth2')
+    PC4.cmd('echo 1 > /proc/sys/net/ipv4/ip_forward')
+
     info( '*** Starting network\n')
     net.start()
+
+    PC1.cmd('ip route add default via 10.10.10.4')
+    PC1.cmd('ip -6 route add default via fd24:ec43:12ca:c001:10::4')
 
     PC4.cmd('ip -6 addr flush dev PC4-eth0')
     PC4.cmd('ip -6 addr flush dev PC4-eth1')
