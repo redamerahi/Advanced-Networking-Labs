@@ -147,15 +147,78 @@ def firstNetwork():
 
 
 	info( '*** Starting xterm on hosts\n' )
-	h1.cmd('xterm -xrm \'XTerm.vt100.allowTitleOps: false\' -T h1 &') 
-	h2.cmd('xterm -xrm \'XTerm.vt100.allowTitleOps: false\' -T h2 &')
-	h3.cmd('xterm -xrm \'XTerm.vt100.allowTitleOps: false\' -T h3 &')
-	h4.cmd('xterm -xrm \'XTerm.vt100.allowTitleOps: false\' -T h4 &')
-	r1.cmd('xterm -xrm \'XTerm.vt100.allowTitleOps: false\' -T r1 &')
-	r2.cmd('xterm -xrm \'XTerm.vt100.allowTitleOps: false\' -T r2 &')
-	r3.cmd('xterm -xrm \'XTerm.vt100.allowTitleOps: false\' -T r3 &')
-	
+	h1.cmd(
+        'xterm '
+        '-xrm "XTerm.vt100.allowTitleOps: false" '
+        '-xrm "XTerm.vt100.selectToClipboard: true" '
+        '-xrm "XTerm.vt100.translations: #override '
+        'Ctrl Shift <Key>C: copy-selection(CLIPBOARD)\\n'
+        'Ctrl Shift <Key>V: insert-selection(CLIPBOARD)\\n'
+        'Shift <Key>Insert: insert-selection(CLIPBOARD)" '
+        '-T h1 &'
+    )
+	h2.cmd(
+        'xterm '
+        '-xrm "XTerm.vt100.allowTitleOps: false" '
+        '-xrm "XTerm.vt100.selectToClipboard: true" '
+        '-xrm "XTerm.vt100.translations: #override '
+        'Ctrl Shift <Key>C: copy-selection(CLIPBOARD)\\n'
+        'Ctrl Shift <Key>V: insert-selection(CLIPBOARD)\\n'
+        'Shift <Key>Insert: insert-selection(CLIPBOARD)" '
+        '-T h2 &'
+    )
+	h3.cmd(
+        'xterm '
+        '-xrm "XTerm.vt100.allowTitleOps: false" '
+        '-xrm "XTerm.vt100.selectToClipboard: true" '
+        '-xrm "XTerm.vt100.translations: #override '
+        'Ctrl Shift <Key>C: copy-selection(CLIPBOARD)\\n'
+        'Ctrl Shift <Key>V: insert-selection(CLIPBOARD)\\n'
+        'Shift <Key>Insert: insert-selection(CLIPBOARD)" '
+        '-T h3 &'
+    )
+	h4.cmd(
+        'xterm '
+        '-xrm "XTerm.vt100.allowTitleOps: false" '
+        '-xrm "XTerm.vt100.selectToClipboard: true" '
+        '-xrm "XTerm.vt100.translations: #override '
+        'Ctrl Shift <Key>C: copy-selection(CLIPBOARD)\\n'
+        'Ctrl Shift <Key>V: insert-selection(CLIPBOARD)\\n'
+        'Shift <Key>Insert: insert-selection(CLIPBOARD)" '
+        '-T h4 &'
+    )
 
+
+	r1.cmd(
+        'xterm '
+        '-xrm "XTerm.vt100.allowTitleOps: false" '
+        '-xrm "XTerm.vt100.selectToClipboard: true" '
+        '-xrm "XTerm.vt100.translations: #override '
+        'Ctrl Shift <Key>C: copy-selection(CLIPBOARD)\\n'
+        'Ctrl Shift <Key>V: insert-selection(CLIPBOARD)\\n'
+        'Shift <Key>Insert: insert-selection(CLIPBOARD)" '
+        '-T r1 &'
+    )
+	r2.cmd(
+        'xterm '
+        '-xrm "XTerm.vt100.allowTitleOps: false" '
+        '-xrm "XTerm.vt100.selectToClipboard: true" '
+        '-xrm "XTerm.vt100.translations: #override '
+        'Ctrl Shift <Key>C: copy-selection(CLIPBOARD)\\n'
+        'Ctrl Shift <Key>V: insert-selection(CLIPBOARD)\\n'
+        'Shift <Key>Insert: insert-selection(CLIPBOARD)" '
+        '-T r2 &'
+    )
+	r3.cmd(
+        'xterm '
+        '-xrm "XTerm.vt100.allowTitleOps: false" '
+        '-xrm "XTerm.vt100.selectToClipboard: true" '
+        '-xrm "XTerm.vt100.translations: #override '
+        'Ctrl Shift <Key>C: copy-selection(CLIPBOARD)\\n'
+        'Ctrl Shift <Key>V: insert-selection(CLIPBOARD)\\n'
+        'Shift <Key>Insert: insert-selection(CLIPBOARD)" '
+        '-T r3 &'
+    )
 	info( '*** Running the command line interface\n' ) 
 	CLI( net )
 

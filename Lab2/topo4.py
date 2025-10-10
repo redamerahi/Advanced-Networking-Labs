@@ -46,10 +46,36 @@ def firstNetwork():
 	r1.cmd('echo 1 > /proc/sys/net/ipv4/ip_forward')
 
 	info( '*** Starting xterm on hosts\n' )
-	h1.cmd('xterm -xrm \'XTerm.vt100.allowTitleOps: false\' -T h1 &') 
-	h2.cmd('xterm -xrm \'XTerm.vt100.allowTitleOps: false\' -T h2 &')
-	r1.cmd('xterm -xrm \'XTerm.vt100.allowTitleOps: false\' -T r1 &')
-
+	h1.cmd(
+        'xterm '
+        '-xrm "XTerm.vt100.allowTitleOps: false" '
+        '-xrm "XTerm.vt100.selectToClipboard: true" '
+        '-xrm "XTerm.vt100.translations: #override '
+        'Ctrl Shift <Key>C: copy-selection(CLIPBOARD)\\n'
+        'Ctrl Shift <Key>V: insert-selection(CLIPBOARD)\\n'
+        'Shift <Key>Insert: insert-selection(CLIPBOARD)" '
+        '-T h1 &'
+    )
+	h2.cmd(
+        'xterm '
+        '-xrm "XTerm.vt100.allowTitleOps: false" '
+        '-xrm "XTerm.vt100.selectToClipboard: true" '
+        '-xrm "XTerm.vt100.translations: #override '
+        'Ctrl Shift <Key>C: copy-selection(CLIPBOARD)\\n'
+        'Ctrl Shift <Key>V: insert-selection(CLIPBOARD)\\n'
+        'Shift <Key>Insert: insert-selection(CLIPBOARD)" '
+        '-T h2 &'
+    )
+	r1.cmd(
+        'xterm '
+        '-xrm "XTerm.vt100.allowTitleOps: false" '
+        '-xrm "XTerm.vt100.selectToClipboard: true" '
+        '-xrm "XTerm.vt100.translations: #override '
+        'Ctrl Shift <Key>C: copy-selection(CLIPBOARD)\\n'
+        'Ctrl Shift <Key>V: insert-selection(CLIPBOARD)\\n'
+        'Shift <Key>Insert: insert-selection(CLIPBOARD)" '
+        '-T r1 &'
+    )
 	info( '*** Running the command line interface\n' ) 
 	CLI( net )
 
