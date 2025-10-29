@@ -8,7 +8,7 @@ import subprocess
 import re
 import sys
 
-HOST = 'localhost'
+HOST = '127.0.0.1'
 PORT = 5003
 BUFFER_SIZE = 1024
 
