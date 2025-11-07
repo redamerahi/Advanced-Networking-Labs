@@ -31,6 +31,9 @@ try:
         elif family == socket.AF_INET6:
             ipv6_addr = sockaddr
 
+    print(f"Resolved IPv4 address: {ipv4_addr}")
+    print(f"Resolved IPv6 address: {ipv6_addr}")
+
     if not ipv4_addr and not ipv6_addr:
         print("No valid IPv4 or IPv6 address found.")
         sys.exit(1)
@@ -42,6 +45,7 @@ try:
 
     # Main loop: keep sending until response is received
     while True:
+        
         # Send the message on both IPv4 and IPv6
         if ipv4_addr:
             sock4.sendto(message, ipv4_addr)
@@ -60,11 +64,8 @@ try:
 
         # Process the received message
         text = data.decode().strip()
-        if text.startswith("OFFSET="):
-            print(f"Received {text} from {addr}")
-            break
-        else:
-            print(f"Irrelevant message: {text}")
+        print(f"Received {text} from {addr}")
+        break
 
     print("Reset ACK. Exiting!")
 

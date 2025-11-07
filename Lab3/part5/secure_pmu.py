@@ -1,7 +1,6 @@
 import socket
 import sys
 import ssl
-import random
 
 if len(sys.argv) == 4:
     port = int(sys.argv[1])
@@ -17,7 +16,6 @@ try:
 
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     context.load_cert_chain(certfile=cert, keyfile=key)
-    context.load_verify_locations("Part5_ca.crt")
 
     sock.bind(('0.0.0.0', port))
     sock.listen(1)
@@ -32,7 +30,7 @@ try:
     print(f"Received command: {data}", flush=True)  
 
     if data.startswith("CMD_short:"):
-        for i in range(random.randint(3, 10)):
+        for i in range(5):
             msg = f"This is PMU data {i}\n"
             tls_conn.sendall(msg.encode())
     else:
@@ -46,7 +44,6 @@ except Exception as e:
     print(f"Error: {e}",flush=True)
 finally:
     try:
-        tls_conn.shutdown(socket.SHUT_RDWR)
         tls_conn.close()
     except:
         pass
