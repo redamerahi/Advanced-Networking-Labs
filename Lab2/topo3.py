@@ -57,10 +57,10 @@ def firstNetwork():
     
 	h2.cmd('ip -4 addr flush dev h2-eth0')
 	h2.cmd('ip addr add 10.0.2.2/24 dev h2-eth0')
-	h2.cmd('ip route add default via 10.5.0.100')
+	h2.cmd('ip route add default via 10.0.2.1')
     #ipv6
 	h2.cmd('ip -6 addr add 2020::2:2/112 dev h2-eth0')
-	h2.cmd('ip -6 route add default via 2020::10:2')
+	h2.cmd('ip -6 route add default via 2020::2:1')
     
     
 	h3.cmd('ip -4 addr flush dev h3-eth0')
@@ -115,10 +115,11 @@ def firstNetwork():
 	r3.cmd('ip -6 addr add 2020::6:2/112 dev r3-eth1')
 	r3.cmd('ip -6 addr add 2020::7:2/112 dev r3-eth2')
 
-
+	r1.cmd('echo 1 > /proc/sys/net/ipv4/ip_forward')
 	r2.cmd('echo 1 > /proc/sys/net/ipv4/ip_forward')
 	r3.cmd('echo 1 > /proc/sys/net/ipv4/ip_forward')
     #ipv6
+	r1.cmd('echo 1 > /proc/sys/net/ipv6/conf/all/forwarding')
 	r2.cmd('echo 1 > /proc/sys/net/ipv6/conf/all/forwarding')
 	r3.cmd('echo 1 > /proc/sys/net/ipv6/conf/all/forwarding')
 
