@@ -22,7 +22,9 @@ try:
 
     while True:
         data = ws.recv()
-        print(data, flush=True)
+        if isinstance(data, bytes):
+            data = data.decode()
+        print(data.strip(), flush=True)
 
 except KeyboardInterrupt:
     print("\nInterrupted by user.", flush=True)
